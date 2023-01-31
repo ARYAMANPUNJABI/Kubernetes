@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: mynginxpodlabels
+    labels:
+       env: development
+       app: facebook
+spec:
+  containers:
+    - image: nginx
+      name: mynginxcontainer
+      ports:
+       - containerPort: 80
