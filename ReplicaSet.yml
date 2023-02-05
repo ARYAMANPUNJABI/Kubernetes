@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+    name: mynginxpodrs1
+spec:
+  replicas: 3
+  selector:
+     matchExpressions:
+         - key: app
+           operator: In
+           values:
+             - development
+  template:
+   metadata:
+        labels:
+          app: development
+   spec:
+    containers:
+     - image: nginx
+       name: mynginx
+       ports:
+        - containerPort: 80
+       readinessProbe:
+        exec:
+          command:
+            - ls
+            - /usr/share/nginx/html
+
+
